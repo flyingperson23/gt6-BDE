@@ -56,7 +56,11 @@ import net.minecraftforge.fluids.FluidStack;
 public class MultiItemFood extends MultiItemRandom implements IItemRottable {
 	public MultiItemFood() {
 		super(MD.GT.mID, "gt.multiitem.food");
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Nature & Foods", this, (short)12000));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Nature & Foods", this, (short) 12000));
+		}
 	}
 
 	@Override

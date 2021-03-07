@@ -37,6 +37,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class Loader_Recipes_Chem implements Runnable {
 	@Override public void run() {
+		if (DISABLE_MACHINES) return;
 		for (FluidStack tFluid : FL.array(FL.Water.make(1000), FL.SpDew.make(1000), FL.DistW.make(1000))) {
 		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.NaCl   , U4), FL.mul(tFluid, 3, 4, T), MT.SaltWater.liquid(U*1, F), ZL_IS);
 		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.NaCl       ), FL.mul(tFluid, 3      ), MT.SaltWater.liquid(U*4, F), ZL_IS);

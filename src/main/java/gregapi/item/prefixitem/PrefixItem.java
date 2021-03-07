@@ -95,7 +95,13 @@ public class PrefixItem extends Item implements Runnable, IItemUpdatable, IPrefi
 		mPrefix.mRegisteredItems.add(this); // this optimizes some processes by decreasing the size of the Set.
 		
 		if (SHOW_HIDDEN_PREFIXES || !mPrefix.contains(TD.Creative.HIDDEN)) {
-			if (mPrefix.mCreativeTab == null) mPrefix.mCreativeTab = new CreativeTab(mPrefix.mNameInternal, mPrefix.mNameCategory, this, W);
+			if (CONSOLIDATE_CREATIVETABS) {
+				if (mPrefix.mCreativeTab == null)
+					mPrefix.mCreativeTab = TAB;
+			} else {
+				if (mPrefix.mCreativeTab == null)
+					mPrefix.mCreativeTab = new CreativeTab(mPrefix.mNameInternal, mPrefix.mNameCategory, this, W);
+			}
 			setCreativeTab(mPrefix.mCreativeTab);
 		} else {
 			setCreativeTab(CreativeTabs.tabMisc);

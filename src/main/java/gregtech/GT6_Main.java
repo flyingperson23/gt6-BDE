@@ -265,6 +265,8 @@ public class GT6_Main extends Abstract_Mod {
 				
 				new Loader_Recipes_Extruder()
 			);
+
+			if (NEW_RECIPES) tList.add(new Loader_OverridenRecipes());
 			
 			for (Runnable tRunnable : tList) try {tRunnable.run();} catch(Throwable e) {e.printStackTrace(ERR);}
 		}};
@@ -558,7 +560,7 @@ public class GT6_Main extends Abstract_Mod {
 			}
 		}
 
-		for (MultiItemRandom tItem : ItemsGT.ALL_MULTI_ITEMS) for (Entry<Short, ArrayList<IBehavior<MultiItem>>> tEntry : tItem.mItemBehaviors.entrySet()) for (IBehavior<MultiItem> tBehavior : tEntry.getValue()) if (tBehavior instanceof Behavior_Turn_Into) if (((Behavior_Turn_Into)tBehavior).mTurnInto.exists()) tItem.mVisibleItems.set(tEntry.getKey(), F);
+		for (MultiItemRandom tItem : ItemsGT.ALL_MULTI_ITEMS) if (tItem != null) for (Entry<Short, ArrayList<IBehavior<MultiItem>>> tEntry : tItem.mItemBehaviors.entrySet()) for (IBehavior<MultiItem> tBehavior : tEntry.getValue()) if (tBehavior instanceof Behavior_Turn_Into) if (((Behavior_Turn_Into)tBehavior).mTurnInto.exists()) tItem.mVisibleItems.set(tEntry.getKey(), F);
 	}
 
 	@Override

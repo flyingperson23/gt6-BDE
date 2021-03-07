@@ -175,7 +175,12 @@ public class MultiTileEntityRegistry {
 		mRegistry.put(aClassContainer.mID, aClassContainer);
 		mLastRegisteredID = aClassContainer.mID;
 		mRegistrations.add(aClassContainer);
-		if (!mCreativeTabs.containsKey(aClassContainer.mCreativeTabID)) mCreativeTabs.put(aClassContainer.mCreativeTabID, new CreativeTab(mNameInternal+"."+aClassContainer.mCreativeTabID, aCategoricalName, Item.getItemFromBlock(mBlock), aClassContainer.mCreativeTabID));
+		if (CONSOLIDATE_CREATIVETABS) {
+			if (!mCreativeTabs.containsKey(aClassContainer.mCreativeTabID)) mCreativeTabs.put(aClassContainer.mCreativeTabID, TAB);
+		} else {
+			if (!mCreativeTabs.containsKey(aClassContainer.mCreativeTabID))
+				mCreativeTabs.put(aClassContainer.mCreativeTabID, new CreativeTab(mNameInternal + "." + aClassContainer.mCreativeTabID, aCategoricalName, Item.getItemFromBlock(mBlock), aClassContainer.mCreativeTabID));
+		}
 		if (sRegisteredTileEntities.add(aClassContainer.mCanonicalTileEntity.getClass())) {
 			if (aClassContainer.mCanonicalTileEntity instanceof IMTE_OnRegistrationFirst) ((IMTE_OnRegistrationFirst)aClassContainer.mCanonicalTileEntity).onRegistrationFirst(this, aClassContainer.mID);
 			if (CODE_CLIENT && aClassContainer.mCanonicalTileEntity instanceof IMTE_OnRegistrationFirstClient) ((IMTE_OnRegistrationFirstClient)aClassContainer.mCanonicalTileEntity).onRegistrationFirstClient(this, aClassContainer.mID);

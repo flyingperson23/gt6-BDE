@@ -225,10 +225,10 @@ public class WorldgenTesting extends WorldgenObject {
 			, NI
 			, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.BUILDERWAND           , MT.Heliodor, MT.WOODS.Scorched)
 			
-			, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.POCKET_MULTITOOL      , MT.Vibramantium, MT.Vibramantium)
+			//, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.POCKET_MULTITOOL      , MT.Vibramantium, MT.Vibramantium)
 			, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.PLUNGER               , MT.Greatwood, MT.Greatwood)
-			, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.MAGNIFYING_GLASS      , MT.DiamondPink, MT.LightBlue)
-			, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.GEM_PICK              , MT.DiamondPink, MT.LightBlue)
+			//, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.MAGNIFYING_GLASS      , MT.DiamondPink, MT.LightBlue)
+			//, ToolsGT.sMetaTool.getToolWithStats(ToolsGT.GEM_PICK              , MT.DiamondPink, MT.LightBlue)
 			, ST.make(Items.wooden_pickaxe , 1, 0)
 			, ST.make(Items.stone_pickaxe  , 1, 0)
 			, ST.make(Items.golden_pickaxe , 1, 0)

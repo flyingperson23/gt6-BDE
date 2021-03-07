@@ -30,11 +30,7 @@ import gregapi.data.LH;
 import gregapi.data.MD;
 import gregapi.data.OP;
 import gregapi.data.TD;
-import gregapi.item.CreativeTab;
-import gregapi.item.IItemGT;
-import gregapi.item.IItemNoGTOverride;
-import gregapi.item.IItemUpdatable;
-import gregapi.item.IPrefixItem;
+import gregapi.item.*;
 import gregapi.oredict.OreDictItemData;
 import gregapi.oredict.OreDictMaterial;
 import gregapi.oredict.OreDictPrefix;
@@ -67,7 +63,11 @@ public class PrefixBlockItem extends ItemBlock implements IItemUpdatable, IPrefi
 		mBlock.mPrefix.mRegisteredPrefixItems.add(this);
 		
 		if ((SHOW_HIDDEN_PREFIXES || !mBlock.mPrefix.contains(TD.Creative.HIDDEN)) && (SHOW_ORE_BLOCK_PREFIXES || "gt.meta.ore.normal.default".equalsIgnoreCase(mBlock.mNameInternal) || !mBlock.mPrefix.contains(TD.Prefix.ORE))) {
-			if (mBlock.mPrefix.mCreativeTab == null) mBlock.mPrefix.mCreativeTab = new CreativeTab(mBlock.mPrefix.mNameInternal, mBlock.mPrefix.mNameCategory, this, W);
+			if (CONSOLIDATE_CREATIVETABS) {
+				if (mBlock.mPrefix.mCreativeTab == null) mBlock.mPrefix.mCreativeTab = TAB;
+			} else {
+				if (mBlock.mPrefix.mCreativeTab == null) mBlock.mPrefix.mCreativeTab = new CreativeTab(mBlock.mPrefix.mNameInternal, mBlock.mPrefix.mNameCategory, this, W);
+			}
 			mBlock.setCreativeTab(mBlock.mPrefix.mCreativeTab);
 			setCreativeTab(mBlock.mPrefix.mCreativeTab);
 		} else {

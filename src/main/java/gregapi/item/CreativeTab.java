@@ -21,6 +21,8 @@ package gregapi.item;
 
 import gregapi.data.LH;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 /**
@@ -39,7 +41,7 @@ public class CreativeTab extends CreativeTabs {
 	
 	@Override
 	public Item getTabIconItem() {
-		return mItem;
+		return mItem == null ? Items.iron_ingot : mItem;
 	}
 	
 	@Override

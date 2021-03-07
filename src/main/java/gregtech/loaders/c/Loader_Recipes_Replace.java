@@ -130,8 +130,7 @@ public class Loader_Recipes_Replace implements Runnable {
 		ArrayListNoNulls<RecipeReplacement> tList = new ArrayListNoNulls<>();
 		List<IRecipe> tRecipeList = CR.list();
 		boolean tUseProgressBar = UT.LoadingBar.start("Looking up Recipes", tRecipeList.size());
-		for (int l = 0; l < tRecipeList.size(); l++) {
-			IRecipe tRecipe = tRecipeList.get(l);
+		for (IRecipe tRecipe : tRecipeList) {
 			if (tUseProgressBar) UT.LoadingBar.step("");
 			ItemStack aOutput = tRecipe.getRecipeOutput();
 			if (ST.invalid(aOutput)) continue;
@@ -146,77 +145,112 @@ public class Loader_Recipes_Replace implements Runnable {
 			if (COMPAT_EU_ITEM != null && COMPAT_EU_ITEM.is(aOutput)) continue;
 			if (NON_REPLACEABLE.contains(aOutput, T)) continue;
 			if (sNonReplaceableNames.contains(aOutput.getUnlocalizedName())) continue;
-			
+
 			Object[] tRecipeInputs = null;
-			
+
 			if (tRecipe instanceof ShapedOreRecipe) {
-				tRecipeInputs = ((ShapedOreRecipe)tRecipe).getInput();
+				tRecipeInputs = ((ShapedOreRecipe) tRecipe).getInput();
 			} else if (tRecipe instanceof ShapedRecipes) {
-				tRecipeInputs = ((ShapedRecipes)tRecipe).recipeItems;
+				tRecipeInputs = ((ShapedRecipes) tRecipe).recipeItems;
 			} else if (MD.IC2.mLoaded && tRecipe instanceof ic2.core.AdvRecipe) {
-				tRecipeInputs = ((ic2.core.AdvRecipe)tRecipe).input;
+				tRecipeInputs = ((ic2.core.AdvRecipe) tRecipe).input;
 			}
-			
+
 			if (tRecipeInputs == null || tRecipeInputs.length <= 0) continue;
-			
+
 			OreDictPrefix tPrefix = null;
 			OreDictMaterial tMat = null, tRod = null;
-			
+
 			boolean temp = T;
 			tAlreadyScannedItems.clear();
-			for (int i = 0; i < tRecipeInputs.length; i++) {
-				Object tObject = tRecipeInputs[i];
+			for (Object tObject : tRecipeInputs) {
 				if (!tAlreadyScannedItems.add(tObject)) continue;
 				OreDictItemData tData = null;
 				if (tObject instanceof ItemStack) {
-					if (IL.Stick.equal(tObject)) {tRod = ANY.Wood; continue;}
-					tData = OM.anyassociation((ItemStack)tObject);
+					if (IL.Stick.equal(tObject)) {
+						tRod = ANY.Wood;
+						continue;
+					}
+					tData = OM.anyassociation((ItemStack) tObject);
 				} else if (MD.IC2.mLoaded && tObject instanceof ic2.api.recipe.RecipeInputItemStack) {
-					if (IL.Stick.equal(((ic2.api.recipe.RecipeInputItemStack)tObject).input)) {tRod = ANY.Wood; continue;}
-					tData = OM.anyassociation(((ic2.api.recipe.RecipeInputItemStack)tObject).input);
+					if (IL.Stick.equal(((ic2.api.recipe.RecipeInputItemStack) tObject).input)) {
+						tRod = ANY.Wood;
+						continue;
+					}
+					tData = OM.anyassociation(((ic2.api.recipe.RecipeInputItemStack) tObject).input);
 				} else if (MD.IC2.mLoaded && tObject instanceof ic2.api.recipe.RecipeInputOreDict) {
-					if (OD.stickWood   .toString().equals(((ic2.api.recipe.RecipeInputOreDict)tObject).input)) {tRod = ANY.Wood; continue;}
-					if (OD.stickAnyWood.toString().equals(((ic2.api.recipe.RecipeInputOreDict)tObject).input)) {tRod = ANY.Wood; continue;}
-					tData = OM.data(((ic2.api.recipe.RecipeInputOreDict)tObject).input);
+					if (OD.stickWood.toString().equals(((ic2.api.recipe.RecipeInputOreDict) tObject).input)) {
+						tRod = ANY.Wood;
+						continue;
+					}
+					if (OD.stickAnyWood.toString().equals(((ic2.api.recipe.RecipeInputOreDict) tObject).input)) {
+						tRod = ANY.Wood;
+						continue;
+					}
+					tData = OM.data(((ic2.api.recipe.RecipeInputOreDict) tObject).input);
 				} else if (tObject instanceof List) {
-					if (tStickList == tObject) {tRod = ANY.Wood; continue;}
-					switch(((List)tObject).size()) {
-					case  0:
-						temp = F;
-						break;
-					case  1:
-						if (((List)tObject).get(0) instanceof ItemStack) {
-							tData = OM.anyassociation((ItemStack)(((List)tObject).get(0)));
-						} else {
+					if (tStickList == tObject) {
+						tRod = ANY.Wood;
+						continue;
+					}
+					switch (((List) tObject).size()) {
+						case 0:
 							temp = F;
-						}
-						break;
-					default:
-						for (Object tContent : ((List)tObject)) if (tContent instanceof ItemStack) {
-							if (tData == null) {
-								tData = OM.anyassociation((ItemStack)tContent);
-								if (tData == null || !tData.hasValidPrefixMaterialData()) {temp = F; break;}
+							break;
+						case 1:
+							if (((List) tObject).get(0) instanceof ItemStack) {
+								tData = OM.anyassociation((ItemStack) (((List) tObject).get(0)));
 							} else {
-								OreDictItemData tAssociation = OM.anyassociation((ItemStack)tContent);
-								if (tAssociation == null || tAssociation.mPrefix != tData.mPrefix || tAssociation.mMaterial.mMaterial != tData.mMaterial.mMaterial) {temp = F; break;}
+								temp = F;
 							}
-						} else {
-							temp = F; break;
-						}
-						break;
+							break;
+						default:
+							for (Object tContent : ((List) tObject))
+								if (tContent instanceof ItemStack) {
+									if (tData == null) {
+										tData = OM.anyassociation((ItemStack) tContent);
+										if (tData == null || !tData.hasValidPrefixMaterialData()) {
+											temp = F;
+											break;
+										}
+									} else {
+										OreDictItemData tAssociation = OM.anyassociation((ItemStack) tContent);
+										if (tAssociation == null || tAssociation.mPrefix != tData.mPrefix || tAssociation.mMaterial.mMaterial != tData.mMaterial.mMaterial) {
+											temp = F;
+											break;
+										}
+									}
+								} else {
+									temp = F;
+									break;
+								}
+							break;
 					}
 					if (!temp) break;
 				} else {
-					temp = F; break;
+					temp = F;
+					break;
 				}
-				
-				if (tData == null) {temp = F; break;}
+
+				if (tData == null) {
+					temp = F;
+					break;
+				}
 				if (tData.mPrefix == OP.stick) {
-					if (tRod != null && tRod != tData.mMaterial.mMaterial) {temp = F; break;}
+					if (tRod != null && tRod != tData.mMaterial.mMaterial) {
+						temp = F;
+						break;
+					}
 					tRod = tData.mMaterial.mMaterial;
 				} else {
-					if (tMat != null && tMat != tData.mMaterial.mMaterial) {temp = F; break;}
-					if (tData.mPrefix != OP.ingot && tData.mPrefix != OP.gem) {temp = F; break;}
+					if (tMat != null && tMat != tData.mMaterial.mMaterial) {
+						temp = F;
+						break;
+					}
+					if (tData.mPrefix != OP.ingot && tData.mPrefix != OP.gem) {
+						temp = F;
+						break;
+					}
 					tMat = tData.mMaterial.mMaterial;
 					tPrefix = tData.mPrefix;
 				}
@@ -320,30 +354,30 @@ public class Loader_Recipes_Replace implements Runnable {
 				,null, null, null)
 				, "Helmet"
 				, PLT+PLT+PLT
-				, CRV+HAM+CRV)
+				, PLT+HAM+PLT)
 		, new RecipeReplacer(ST.array
 				(INGT, null, INGT
 				,INGT, INGT, INGT
 				,INGT, INGT, INGT)
 				, "ChestPlate"
 				, PLT+HAM+PLT
-				, CRV+PLT+CRV
-				, CRV+PLT+CRV)
+				, PLT+PLT+PLT
+				, PLT+PLT+PLT)
 		, new RecipeReplacer(ST.array
 				(INGT, INGT, INGT
 				,INGT, null, INGT
 				,INGT, null, INGT)
 				, "Pants"
-				, PLT+CRV+PLT
-				, CRV+HAM+CRV
-				, CRV+___+CRV)
+				, PLT+PLT+PLT
+				, PLT+HAM+PLT
+				, PLT+___+PLT)
 		, new RecipeReplacer(ST.array
 				(null, null, null
 				,INGT, null, INGT
 				,INGT, null, INGT)
 				, "Boots"
 				, PLT+___+PLT
-				, CRV+HAM+CRV)
+				, PLT+HAM+PLT)
 		, new RecipeReplacer(ST.array
 				(INGT, null, null
 				,null, INGT, null

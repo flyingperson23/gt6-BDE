@@ -45,6 +45,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class Loader_Recipes_Ores implements Runnable {
 	@Override public void run() {
+		if (DISABLE_MACHINES) return;
+
 		RM.Centrifuge       .addRecipe1(T, 64,  144, OM.dust(MT.DarkAsh, U*2), OM.dust(MT.Ash), IL.TE_Slag.get(1, IL.IE_Slag.get(1, IL.FZ_Sludge.get(1, OM.dust(MT.Ash)))));
 		
 		for (FluidStack tWater : FL.array(FL.Water.make(1000), FL.SpDew.make(1000), FL.DistW.make(1000))) {

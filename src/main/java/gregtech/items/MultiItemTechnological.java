@@ -44,7 +44,11 @@ import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 public class MultiItemTechnological extends MultiItemRandom {
 	public MultiItemTechnological() {
 		super(MD.GT.mID, "gt.multiitem.technological");
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Technology", this, (short)30501));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Technology", this, (short) 30501));
+		}
 	}
 
 	@Override

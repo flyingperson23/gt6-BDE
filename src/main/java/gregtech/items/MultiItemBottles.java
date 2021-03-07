@@ -42,7 +42,11 @@ import net.minecraft.world.World;
 public class MultiItemBottles extends MultiItemRandom implements IItemRottable {
 	public MultiItemBottles() {
 		super(MD.GT.mID, "gt.multiitem.bottles");
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Bottles", this, (short)1600));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Bottles", this, (short) 1600));
+		}
 	}
 	
 	@Override

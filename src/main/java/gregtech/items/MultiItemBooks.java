@@ -52,7 +52,11 @@ public class MultiItemBooks extends MultiItemRandom {
 		super(MD.GT.mID, "gt.multiitem.books");
 		OM.reg(OD.craftingBook, ST.make(this, 1, W));
 		BooksGT.BOOK_REGISTER.put(new ItemStackContainer(this, 1, W), (byte)3);
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Books", this, (short)32000));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Books", this, (short) 32000));
+		}
 	}
 	
 	@Override

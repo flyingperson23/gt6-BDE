@@ -37,6 +37,8 @@ import net.minecraft.item.ItemStack;
 
 public class Loader_Recipes_Potions implements Runnable {
 	@Override public void run() {
+		if (DISABLE_MACHINES) return;
+
 		RM.Distillery.addRecipe1(T, 16, 48, ST.make(Items.nether_wart   , 1, W), FL.DistW         .make(750), FL.Potion_Awkward         .make(750), ZL_IS);
 		
 		RM.Distillery.addRecipe1(T, 16, 48, ST.make(Items.magma_cream   , 1, W), FL.DistW         .make(750), FL.Potion_Mundane         .make(750), ZL_IS);

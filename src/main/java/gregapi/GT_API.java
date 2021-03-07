@@ -329,6 +329,7 @@ public class GT_API extends Abstract_Mod {
 		ConfigsGT.WORLDGEN      = new Config("WorldGenerationNew.cfg");
 		ConfigsGT.MATERIAL      = new Config("Materials.cfg");
 		ConfigsGT.OREPROCESSING = new Config("OreProcessing.cfg");
+		ConfigsGT.FC = new Config("FlyingPersonsChanges.cfg");
 		// Deprecated Config Files.
 		ConfigsGT.OVERPOWERED = ConfigsGT.MACHINES = ConfigsGT.SPECIAL = ConfigsGT.GREGTECH;
 		
@@ -512,7 +513,17 @@ public class GT_API extends Abstract_Mod {
 			tPrefix.setConfigStacksize(tStackConfig.get("stacksizes", tPrefix.mNameInternal+"_"+tPrefix.mDefaultStackSize, tPrefix.mDefaultStackSize).getInt());
 		}
 		tStackConfig.save();
-		
+
+		DISABLE_MACHINES						= ConfigsGT.FC.get("general", "disableMachines", 			T);
+		DISABLE_BEES							= ConfigsGT.FC.get("general", "disableBees", 				T);
+		DISABLE_MISC							= ConfigsGT.FC.get("general", "disableMisc", 				T);
+		DISABLE_WORLDGEN						= ConfigsGT.FC.get("general", "disableExtraWorldgen", 	T);
+		DISABLE_UNUSED_NEI_PAGES				= ConfigsGT.FC.get("general", "disableUnusedNeiPages", 	T);
+		DISABLE_EARLYGAME						= ConfigsGT.FC.get("general", "disableEarlyGameStuff", 	T);
+		DISABLE_NEISPAM							= ConfigsGT.FC.get("general", "disableNeiSpam", 			T);
+		CONSOLIDATE_CREATIVETABS				= ConfigsGT.FC.get("general", "consolidateCreativeTabs", 	T);
+		NEW_RECIPES								= ConfigsGT.FC.get("general", "newRecipes", 				T);
+
 		SURVIVAL_INTO_ADVENTURE_MODE            = ConfigsGT.GREGTECH.get("general", "forceAdventureMode"               , F);
 		ADVENTURE_MODE_KIT                      = ConfigsGT.GREGTECH.get("general", "AdventureModeStartingKit"         , !MD.GT.mLoaded);
 		HUNGER_BY_INVENTORY_WEIGHT              = ConfigsGT.GREGTECH.get("general", "AFK_Hunger"                       ,  MD.GT.mLoaded);

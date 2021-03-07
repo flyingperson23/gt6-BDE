@@ -570,15 +570,16 @@ public class Loader_Worldgen implements Runnable {
 		
 		
 		
-		
-		new WorldgenOcean           ("ocean.seawater"          , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA); // IT IS IMPORTANT THAT OCEAN COMES BEFORE RIVER AND SWAMP!!!
-		new WorldgenRiver           ("river.riverwater"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT); // IT IS IMPORTANT THAT RIVER COMES AFTER OCEAN AND BEFORE SWAMP!!!
-		new WorldgenSwamp           ("swamp.dirtywater"        , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS); // IT IS IMPORTANT THAT SWAMP COMES AFTER RIVER AND OCEAN!!!
-		
-		new WorldgenDeepOcean       ("ocean.prismacorals"      , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
-		new WorldgenBlackSand       ("river.magnetite"         , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT, GEN_TROPICS);
-		new WorldgenTurf            ("swamp.turf"              , T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT);
-		
+		if (!DISABLE_WORLDGEN) {
+			new WorldgenOcean("ocean.seawater", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA); // IT IS IMPORTANT THAT OCEAN COMES BEFORE RIVER AND SWAMP!!!
+			new WorldgenRiver("river.riverwater", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT); // IT IS IMPORTANT THAT RIVER COMES AFTER OCEAN AND BEFORE SWAMP!!!
+			new WorldgenSwamp("swamp.dirtywater", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TWILIGHT, GEN_EREBUS); // IT IS IMPORTANT THAT SWAMP COMES AFTER RIVER AND OCEAN!!!
+
+			new WorldgenDeepOcean("ocean.prismacorals", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
+			new WorldgenBlackSand("river.magnetite", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT, GEN_TROPICS);
+			new WorldgenTurf("swamp.turf", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT);
+		}
+
 		int tChance = 320;
 		if (MD.PFAA.mLoaded) {
 		tChance = 512;
@@ -597,49 +598,56 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenNetherClay      ("nether.clay.red"         , T, GEN_NETHER);
 		new WorldgenNetherQuartz    ("nether.netherquartz"     , T, GEN_NETHER);
 		new WorldgenNetherCrystals  ("nether.nethercrystals"   , T, GEN_NETHER);
-		
-		new WorldgenLogDry          ("log.dry"                 , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
-		new WorldgenLogRotten       ("log.rotten"              , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS);
-		new WorldgenLogMossy        ("log.mossy"               , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
-		new WorldgenLogFrozen       ("log.frozen"              , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
-		
-		new WorldgenTreeRubber      ("tree.rubber"             , T, 1, 5, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT);
-		new WorldgenTreeMaple       ("tree.maple"              , T, 1, 5, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
-		new WorldgenTreeWillow      ("tree.willow"             , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
-		new WorldgenTreeBlueMahoe   ("tree.bluemahoe"          , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TROPICS);
-		new WorldgenTreeHazel       ("tree.hazel"              , T, 1,32, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_ALFHEIM);
-		new WorldgenTreeCinnamon    ("tree.cinnamon"           , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TROPICS);
-		new WorldgenTreeCoconut     ("tree.coconut"            , T, 1, 1, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_ATUM, GEN_TROPICS);
-		new WorldgenTreeRainbowood  ("tree.rainbowood"         , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_ALFHEIM, GEN_AETHER);
-		
-		new WorldgenRocks           (   "overworld.rocks"      , T, 2, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC);
-		new WorldgenRacks           (      "nether.rocks"      , T      , GEN_NETHER);
-		new WorldgenErebusRocks     (      "erebus.rocks"      , T      , GEN_EREBUS);
-		new WorldgenRocks           (    "twilight.rocks"      , T, 4, 3, GEN_TWILIGHT);
-		new WorldgenRocks           (     "tropics.rocks"      , T, 3, 3, GEN_TROPICS);
-		new WorldgenAlfheimRocks    (     "alfheim.rocks"      , T, 3, 3, GEN_ALFHEIM);
-		new WorldgenAetherRocks     (      "aether.rocks"      , T, 3, 3, GEN_AETHER);
-		new WorldgenRocks           (        "atum.rocks"      , T, 3, 3, GEN_ATUM);
-		new WorldgenMoonRocks       (        "moon.rocks"      , T      , GEN_MOON);
-		new WorldgenMarsRocks       (        "mars.rocks"      , T      , GEN_MARS);
-		new WorldgenPlanetRocks     (      "planet.rocks"      , T      , GEN_PLANETS);
-		
-		new WorldgenSticks          ("sticks"                  , T, 2, 2, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS, GEN_ALFHEIM, GEN_BETWEENLANDS, GEN_AETHER, GEN_ENVM, GEN_ENVM_GT);
-		
-		new WorldgenGlowtus         ("plant.glowtus"           , T,16, 2, GEN_OVERWORLD, GEN_GT, GEN_PFAA                         , GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS);
-		new WorldgenBushes          ("plant.bush"              , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
-		
-		new WorldgenHives           (   "overworld.bumblehives", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_ENVM, GEN_ENVM_GT);
-		new WorldgenHives           (      "nether.bumblehives", T, GEN_NETHER);
-		new WorldgenHives           (         "end.bumblehives", T, GEN_END);
-		new WorldgenHives           (      "erebus.bumblehives", T, GEN_EREBUS);
-		new WorldgenHives           (    "twilight.bumblehives", T, GEN_TWILIGHT);
-		new WorldgenHives           (     "tropics.bumblehives", T, GEN_TROPICS);
-		new WorldgenHives           (     "alfheim.bumblehives", T, GEN_ALFHEIM);
-		new WorldgenHives           ("betweenlands.bumblehives", T, GEN_BETWEENLANDS);
-		new WorldgenHives           (      "aether.bumblehives", T, GEN_AETHER);
-		new WorldgenHives           (        "atum.bumblehives", T, GEN_ATUM);
-		
+
+		if (!DISABLE_WORLDGEN) {
+			new WorldgenLogDry          ("log.dry"                 , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
+			new WorldgenLogRotten       ("log.rotten"              , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS);
+			new WorldgenLogMossy        ("log.mossy"               , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
+			new WorldgenLogFrozen       ("log.frozen"              , T, 1, 8, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
+
+			new WorldgenTreeRubber      ("tree.rubber"             , T, 1, 5, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_TWILIGHT);
+			new WorldgenTreeMaple       ("tree.maple"              , T, 1, 5, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
+			new WorldgenTreeWillow      ("tree.willow"             , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT);
+			new WorldgenTreeBlueMahoe   ("tree.bluemahoe"          , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TROPICS);
+			new WorldgenTreeHazel       ("tree.hazel"              , T, 1,32, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_ALFHEIM);
+			new WorldgenTreeCinnamon    ("tree.cinnamon"           , T, 1, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TROPICS);
+			new WorldgenTreeCoconut     ("tree.coconut"            , T, 1, 1, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_ATUM, GEN_TROPICS);
+			new WorldgenTreeRainbowood  ("tree.rainbowood"         , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_ALFHEIM, GEN_AETHER);
+
+			new WorldgenGlowtus         ("plant.glowtus"           , T,16, 2, GEN_OVERWORLD, GEN_GT, GEN_PFAA                         , GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS);
+			new WorldgenBushes          ("plant.bush"              , T, 1, 4, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_EREBUS, GEN_TWILIGHT, GEN_TROPICS, GEN_ALFHEIM);
+		}
+
+		if (!DISABLE_MISC) {
+			new WorldgenRocks           (   "overworld.rocks"      , T, 2, 3, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC);
+			new WorldgenRacks           (      "nether.rocks"      , T      , GEN_NETHER);
+			new WorldgenErebusRocks     (      "erebus.rocks"      , T      , GEN_EREBUS);
+			new WorldgenRocks           (    "twilight.rocks"      , T, 4, 3, GEN_TWILIGHT);
+			new WorldgenRocks           (     "tropics.rocks"      , T, 3, 3, GEN_TROPICS);
+			new WorldgenAlfheimRocks    (     "alfheim.rocks"      , T, 3, 3, GEN_ALFHEIM);
+			new WorldgenAetherRocks     (      "aether.rocks"      , T, 3, 3, GEN_AETHER);
+			new WorldgenRocks           (        "atum.rocks"      , T, 3, 3, GEN_ATUM);
+			new WorldgenMoonRocks       (        "moon.rocks"      , T      , GEN_MOON);
+			new WorldgenMarsRocks       (        "mars.rocks"      , T      , GEN_MARS);
+			new WorldgenPlanetRocks     (      "planet.rocks"      , T      , GEN_PLANETS);
+
+			new WorldgenSticks          ("sticks"                  , T, 2, 2, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TWILIGHT, GEN_TROPICS, GEN_EREBUS, GEN_ALFHEIM, GEN_BETWEENLANDS, GEN_AETHER, GEN_ENVM, GEN_ENVM_GT);
+
+		}
+
+		if (!DISABLE_BEES) {
+			new WorldgenHives("overworld.bumblehives", T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_AROMA, GEN_AROMA_GT, GEN_TFC, GEN_ENVM, GEN_ENVM_GT);
+			new WorldgenHives("nether.bumblehives", T, GEN_NETHER);
+			new WorldgenHives("end.bumblehives", T, GEN_END);
+			new WorldgenHives("erebus.bumblehives", T, GEN_EREBUS);
+			new WorldgenHives("twilight.bumblehives", T, GEN_TWILIGHT);
+			new WorldgenHives("tropics.bumblehives", T, GEN_TROPICS);
+			new WorldgenHives("alfheim.bumblehives", T, GEN_ALFHEIM);
+			new WorldgenHives("betweenlands.bumblehives", T, GEN_BETWEENLANDS);
+			new WorldgenHives("aether.bumblehives", T, GEN_AETHER);
+			new WorldgenHives("atum.bumblehives", T, GEN_ATUM);
+		}
+
 		new WorldgenCenterBiomes    ("center.biomes"           , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
 		new WorldgenStreets         ("center.streets"          , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
 		new WorldgenNexus           ("center.nexus"            , F, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);

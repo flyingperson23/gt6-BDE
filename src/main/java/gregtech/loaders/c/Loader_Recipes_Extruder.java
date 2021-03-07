@@ -42,6 +42,8 @@ public class Loader_Recipes_Extruder implements Runnable {
 	@Override
 	@SuppressWarnings("unused")
 	public void run() {
+		if (DISABLE_MACHINES) return;
+
 		RM.Extruder.addRecipe2(T, F, F, F, T, 16,  64, IL.Module_Blackstone_Generator.get(0), IL.Shape_Extruder_Plate       .get(0), OP.plate.mat(MT.Blackstone, 1));
 		RM.Extruder.addRecipe2(T, F, F, F, T, 16,  64, IL.Module_Blackstone_Generator.get(0), IL.Shape_Extruder_Plate_Curved.get(0), OP.plateCurved.mat(MT.Blackstone, 1));
 		RM.Extruder.addRecipe2(T, F, F, F, T, 16,  32, IL.Module_Blackstone_Generator.get(0), IL.Shape_Extruder_Rod         .get(0), OP.stick.mat(MT.Blackstone, 1));

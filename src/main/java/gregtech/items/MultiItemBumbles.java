@@ -64,7 +64,11 @@ import net.minecraft.world.World;
 public class MultiItemBumbles extends MultiItemRandom implements IItemBumbleBee {
 	public MultiItemBumbles() {
 		super(MD.GT.mID, "gt.multiitem.bumblebee");
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Bumblebees", this, (short)2));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Bumblebees", this, (short) 2));
+		}
 	}
 
 	@Override

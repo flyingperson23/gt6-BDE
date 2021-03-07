@@ -56,15 +56,15 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shapeless(OP.dust.mat(MT.White, 1), DEF_NAC, new Object[] {Items.bone});
 		CR.shaped(ST.make(Items.paper, 1, 0), DEF_NAC, "XXX", 'X', Items.reeds);
 		CR.shapeless(ST.make(Items.book, 1, 0), DEF, new Object[] {OD.craftingLeather, OD.paperEmpty, OD.paperEmpty, OD.paperEmpty});
-		
-		CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', OP.cobblestone         , 'F', OD.craftingFirestarter);
-		CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', OP.stone.dat(MT.Basalt), 'F', OD.craftingFirestarter);
+
+		if (!NEW_RECIPES) CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', OP.cobblestone         , 'F', OD.craftingFirestarter);
+		if (!NEW_RECIPES) CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', OP.stone.dat(MT.Basalt), 'F', OD.craftingFirestarter);
 		
 		CR.delate(ST.make(Blocks.enchanting_table, 1, 0));
 		CR.delate(ST.make(Blocks.ender_chest, 1, 0));
-		CR.delate(ST.make(Blocks.furnace, 1, 0));
-		CR.delate(ST.make(Items.saddle, 1, 0));
-		CR.delate(ST.make(Items.magma_cream, 1, 0));
+		if (!NEW_RECIPES) CR.delate(ST.make(Blocks.furnace, 1, 0));
+		if (!NEW_RECIPES) CR.delate(ST.make(Items.saddle, 1, 0));
+		if (!NEW_RECIPES) CR.delate(ST.make(Items.magma_cream, 1, 0));
 		
 		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.disabledrecipes, "enchantmenttable", F)) {
 			OUT.println("GT_Mod: Removing the Recipe of the Enchantment Table, to have Fun enchanting with the Anvil and Books from Dungeons.");
@@ -78,7 +78,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 			CR.shaped(ST.make(Blocks.ender_chest, 1, 0), CR.DEF_NCC, "OOO", "OEO", "OOO", 'O', OP.blockSolid.dat(MT.Obsidian), 'E', OP.gem.dat(MT.EnderEye));
 		}
 		
-		CR.shaped(ST.make(Items.bucket, 1, 0), DEF_NAC | DEL_OTHER_SHAPED_RECIPES, "XhX", " Y ", 'Y', OP.plate.dat(ANY.Fe), 'X', OP.plateCurved.dat(ANY.Fe));
+		CR.shaped(ST.make(Items.bucket, 1, 0), DEF_NAC | DEL_OTHER_SHAPED_RECIPES, "YhY", " Y ", 'Y', OP.plate.dat(ANY.Fe));
 		if (!ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Iron.Bucket", T))
 		CR.shaped(ST.make(Items.bucket, 1, 0), DEF_NAC | DEL_OTHER_SHAPED_RECIPES, "X X", " X ", 'X', OP.ingot.dat(ANY.Fe));
 		
@@ -86,7 +86,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Iron.PressurePlate", T))    if (null != (tStack = CR.remove(tMat, tMat, null, null, null, null, null, null, null))) {
 			CR.shaped(tStack, DEF | DEL_OTHER_SHAPED_RECIPES, "XXh", 'X', OP.plate.dat(ANY.Fe), 'S', OD.stickAnyWood, 'I', OP.ingot.dat(ANY.Fe));
 		}
-		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Iron.Compass", T)) {
+		if (!NEW_RECIPES && ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Iron.Compass", T)) {
 			CR.shaped(ST.make(Items.compass, 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES | ONLY_IF_HAS_OTHER_RECIPES, "sSR", "CIC", "dPh", 'P', OP.plate.dat(ANY.Fe), 'R', OP.gem.dat(MT.Redstone), 'C', OP.plateCurved.dat(ANY.Fe), 'I', OP.stick.dat(ANY.Fe), 'S', OP.stick.dat(MT.IronMagnetic));
 		} else {
 			CR.shaped(ST.make(Items.compass, 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES | ONLY_IF_HAS_OTHER_RECIPES, " X ", "XRX", " X ", 'X', OP.ingot.dat(ANY.Fe), 'R', OD.itemRedstone);
@@ -108,7 +108,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shaped(ST.make(Blocks.glass_pane, 8, 0), DEF, "XXX", 'X', OP.plate.dat(MT.Glass));
 		CR.shaped(ST.make(Blocks.glass_pane, 8, 0), DEF, "XXX", 'X', OP.plateGem.dat(MT.Glass));
 		
-		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Gold.Clock", T)) {
+		if (!NEW_RECIPES && ConfigsGT.RECIPES.get(ConfigCategories.Recipes.recipereplacements, "Gold.Clock", T)) {
 			CR.shaped(ST.make(Items.clock, 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES | ONLY_IF_HAS_OTHER_RECIPES, "sGr", "CRC", "dPh", 'P', OP.plate.dat(MT.Au), 'C', OP.plateCurved.dat(MT.Au), 'R', OP.gem.dat(MT.Redstone), 'G', OP.gearGtSmall.dat(MT.Au));
 		} else {
 			CR.shaped(ST.make(Items.clock, 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES | ONLY_IF_HAS_OTHER_RECIPES, " X ", "XRX", " X ", 'X', OP.ingot.dat(MT.Au), 'R', OD.itemRedstone);
@@ -401,21 +401,23 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		
 		for (int i = 1; i < 16; i++)
 		CR.shapeless(ST.make(Blocks.wool, 1, i), DEF_NAC, new Object[] {ST.make(Blocks.wool, 1, 0), DYE_OREDICTS[15-i]});
-		
-		CR.delate(IL.Food_Bread.get(1));
-		CR.delate(ST.make(Items.arrow, 1, 0));
-		CR.delate(ST.make(Items.cookie, 1, 0));
-		CR.delate(ST.make(Items.golden_apple, 1, 0));
-		CR.delate(ST.make(Items.golden_apple, 1, 1));
-		CR.delate(ST.make(Items.golden_carrot, 1, 0));
-		
-		CR.shapeless(ST.make(Items.arrow, 1, 0), DEF_NCC, new Object[] {OD.itemFlint, OP.arrowGtWood.dat(MT.Empty)});
-		
-		CR.shaped(arrowGtWood    .mat(MT.Empty, 1), CR.DEF_NCC_MIR, " S", "F ", 'S', stick.dat(ANY.Wood), 'F', OD.craftingFeather);
-		CR.shaped(arrowGtPlastic .mat(MT.Empty, 1), CR.DEF_NCC_MIR, " S", "F ", 'S', stick.dat(MT.Plastic), 'F', OD.craftingFeather);
-		CR.shaped(arrowGtWood    .mat(MT.Empty, 1), CR.DEF_NCC_MIR, "PS", "sP", 'S', stick.dat(ANY.Wood), 'P', plateTiny.dat(MT.Plastic));
-		CR.shaped(arrowGtPlastic .mat(MT.Empty, 1), CR.DEF_NCC_MIR, "PS", "sP", 'S', stick.dat(MT.Plastic), 'P', plateTiny.dat(MT.Plastic));
-		
+
+		if (!NEW_RECIPES) {
+			CR.delate(IL.Food_Bread.get(1));
+			CR.delate(ST.make(Items.arrow, 1, 0));
+			CR.delate(ST.make(Items.cookie, 1, 0));
+			CR.delate(ST.make(Items.golden_apple, 1, 0));
+			CR.delate(ST.make(Items.golden_apple, 1, 1));
+			CR.delate(ST.make(Items.golden_carrot, 1, 0));
+
+			CR.shapeless(ST.make(Items.arrow, 1, 0), DEF_NCC, new Object[]{OD.itemFlint, OP.arrowGtWood.dat(MT.Empty)});
+
+			CR.shaped(arrowGtWood.mat(MT.Empty, 1), CR.DEF_NCC_MIR, " S", "F ", 'S', stick.dat(ANY.Wood), 'F', OD.craftingFeather);
+			CR.shaped(arrowGtPlastic.mat(MT.Empty, 1), CR.DEF_NCC_MIR, " S", "F ", 'S', stick.dat(MT.Plastic), 'F', OD.craftingFeather);
+			CR.shaped(arrowGtWood.mat(MT.Empty, 1), CR.DEF_NCC_MIR, "PS", "sP", 'S', stick.dat(ANY.Wood), 'P', plateTiny.dat(MT.Plastic));
+			CR.shaped(arrowGtPlastic.mat(MT.Empty, 1), CR.DEF_NCC_MIR, "PS", "sP", 'S', stick.dat(MT.Plastic), 'P', plateTiny.dat(MT.Plastic));
+		}
+
 		CR.shaped(ST.make(Blocks.stained_glass, 8, 0), DEF, "GGG", "GDG", "GGG", 'G', Blocks.glass, 'D', DYE_OREDICTS[15]);
 		CR.shaped(ST.make(Items.speckled_melon, 1, 0), DEF_NAC | DEL_OTHER_SHAPED_RECIPES, "GGG", "GMG", "GGG", 'M', "cropMelon", 'G', OP.nugget.dat(MT.Au));
 		
@@ -445,7 +447,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shapeless(ST.make(Items.dye, 3, DYE_INDEX_Magenta    ), DEF_NAC, new Object[] {DYE_OREDICTS_MIXABLE[DYE_INDEX_Blue   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Pink]});
 		CR.shapeless(ST.make(Items.dye, 4, DYE_INDEX_Magenta    ), DEF_NAC, new Object[] {DYE_OREDICTS_MIXABLE[DYE_INDEX_Blue   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red], DYE_OREDICTS_MIXABLE[DYE_INDEX_White]});
 		
-		CR.shaped(OP.toolHeadArrow.mat(MT.Flint, 1), DEF, "fX", 'X', "itemFlint");
+		if (!NEW_RECIPES) CR.shaped(OP.toolHeadArrow.mat(MT.Flint, 1), DEF, "fX", 'X', "itemFlint");
 		RM.Sharpening   .addRecipe1(T, 16,  64, ST.make(Items.flint, 1, W), OP.toolHeadArrow.mat(MT.Flint, 1));
 		RM.Sharpening   .addRecipe1(T, 16,  64, ST.make(Blocks.glass, 1, W), OP.lens.mat(MT.Glass, 1));
 		

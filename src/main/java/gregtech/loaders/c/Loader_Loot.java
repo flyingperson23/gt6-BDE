@@ -165,7 +165,7 @@ public class Loader_Loot implements Runnable {
 		addLoot(ChestGenHooks.DUNGEON_CHEST             ,  10, 2, 8, ST.make(BlocksGT.Sapling, 1, 5));
 		addLoot(ChestGenHooks.DUNGEON_CHEST             ,  10, 2, 8, ST.make(BlocksGT.Sapling, 1, 6));
 		addLoot(ChestGenHooks.DUNGEON_CHEST             ,   1, 2, 8, ST.make(BlocksGT.Sapling, 1, 7));
-		addLoot(ChestGenHooks.DUNGEON_CHEST             , 100, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
+		if (!DISABLE_MISC) addLoot(ChestGenHooks.DUNGEON_CHEST             , 100, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
 		
 		addLoot(ChestGenHooks.PYRAMID_DESERT_CHEST      ,   2, 4, 8, IL.Bottle_Holy_Water.get(1));
 		addLoot(ChestGenHooks.PYRAMID_DESERT_CHEST      ,   3, 4,16, OP.dust.mat(MT.Ag, 1));
@@ -259,7 +259,7 @@ public class Loader_Loot implements Runnable {
 		addLoot(ChestGenHooks.MINESHAFT_CORRIDOR        ,  20, 1, 1, IL.Tool_MatchBox_Full.get(1));
 		addLoot(ChestGenHooks.MINESHAFT_CORRIDOR        ,  12,16,64, MultiTileEntityCoin.COIN_MAP.get(MT.Cu));
 		addLoot(ChestGenHooks.MINESHAFT_CORRIDOR        ,   6, 2, 8, ST.make(BlocksGT.Sapling, 1, 0));
-		addLoot(ChestGenHooks.MINESHAFT_CORRIDOR        ,   6, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
+		if (!DISABLE_MISC) addLoot(ChestGenHooks.MINESHAFT_CORRIDOR        ,   6, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
 		
 		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,   4, 8,16, IL.Bottle_Glue.get(1));
 		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,   4, 8,16, IL.Bottle_Lubricant.get(1));
@@ -299,7 +299,7 @@ public class Loader_Loot implements Runnable {
 		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,  12,16,64, MultiTileEntityCoin.COIN_MAP.get(MT.Cu));
 		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,   6, 2, 8, ST.make(BlocksGT.Sapling, 1, 0));
 		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,   6, 2, 8, ST.make(BlocksGT.Sapling, 1, 1));
-		addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,  20, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
+		if (!DISABLE_MISC) addLoot(ChestGenHooks.VILLAGE_BLACKSMITH        ,  20, 1, 2, ST.make(ItemsGT.BOOKS, 1, 32002));
 		
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   3, 1, 1, ST.book("Manual_Hunting_Creeper"));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   3, 1, 1, ST.book("Manual_Hunting_Skeleton"));
@@ -316,7 +316,7 @@ public class Loader_Loot implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   3, 1, 1, ST.book("Manual_Printer"));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   3, 1, 1, ST.book("Manual_Steam"));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   3, 1, 1, ST.book("Manual_Random"));
-		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,  20, 1,10, ST.make(ItemsGT.BOOKS, 1, 32002));
+		if (!DISABLE_MISC) addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,  20, 1,10, ST.make(ItemsGT.BOOKS, 1, 32002));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   1, 1, 9, IL.Paper_Magic_Research_0.get(1));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   1, 1, 8, IL.Paper_Magic_Research_1.get(1));
 		addLoot(ChestGenHooks.STRONGHOLD_LIBRARY        ,   1, 1, 7, IL.Paper_Magic_Research_2.get(1));
@@ -349,7 +349,7 @@ public class Loader_Loot implements Runnable {
 		addLoot(ChestGenHooks.STRONGHOLD_CROSSING       ,   6, 2, 4, OP.crateGtDust.mat(MT.Cr, 1));
 		addLoot(ChestGenHooks.STRONGHOLD_CROSSING       ,  12,16,64, MultiTileEntityCoin.COIN_MAP.get(MT.Ag));
 		addLoot(ChestGenHooks.STRONGHOLD_CROSSING       ,   6, 2, 8, ST.make(BlocksGT.Sapling, 1, 2));
-		addLoot(ChestGenHooks.STRONGHOLD_CROSSING       ,   2, 1, 4, ST.make(ItemsGT.BOOKS, 1, 32002));
+		if (!DISABLE_MISC) addLoot(ChestGenHooks.STRONGHOLD_CROSSING       ,   2, 1, 4, ST.make(ItemsGT.BOOKS, 1, 32002));
 		
 		addLoot(ChestGenHooks.STRONGHOLD_CORRIDOR       ,  12, 1, 4, OP.toolHeadSword.mat(MT.Steel, 1));
 		addLoot(ChestGenHooks.STRONGHOLD_CORRIDOR       ,   6, 1, 4, OP.toolHeadSword.mat(MT.DamascusSteel, 1));

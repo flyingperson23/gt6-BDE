@@ -527,7 +527,7 @@ public class OP {
 	bar                         = unused("bar"                          ).setCategoryName("Bars");
 	
 	public static final OreDictPrefix wireGt[] = {wireGt01, wireGt02, wireGt03, wireGt04, wireGt05, wireGt06, wireGt07, wireGt08, wireGt09, wireGt10, wireGt11, wireGt12, wireGt13, wireGt14, wireGt15, wireGt16};
-	
+
 	static {
 		MT.init();
 		
@@ -667,5 +667,6 @@ public class OP {
 		bulletGtSmall           .mByProducts.add(OM.stack(MT.Gunpowder          ,   U9));
 		bulletGtMedium          .mByProducts.add(OM.stack(MT.Gunpowder          , 2*U9));
 		bulletGtLarge           .mByProducts.add(OM.stack(MT.Gunpowder          ,   U3));
+
 	}
 }

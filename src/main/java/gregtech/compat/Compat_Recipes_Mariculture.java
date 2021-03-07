@@ -25,13 +25,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import gregapi.api.Abstract_Mod;
 import gregapi.code.ModData;
 import gregapi.compat.CompatMods;
+import gregapi.data.*;
 import gregapi.data.CS.ItemsGT;
-import gregapi.data.FL;
-import gregapi.data.IL;
-import gregapi.data.MD;
-import gregapi.data.MT;
-import gregapi.data.OP;
-import gregapi.data.RM;
 import gregapi.util.CR;
 import gregapi.util.OM;
 import gregapi.util.ST;
@@ -44,10 +39,12 @@ public class Compat_Recipes_Mariculture extends CompatMods {
 		CR.delate(IL.MaCu_Polished_Logs.get(1));
 		CR.delate(IL.MaCu_Polished_Planks.get(1));
 		CR.remove(IL.MaCu_Polished_Planks.get(1), null, null, IL.MaCu_Polished_Planks.get(1));
-		
-		RM.generify(ST.make(ItemsGT.BUMBLEBEES, 1, W), IL.MaCu_Bait_Bee.get(1));
-		CR.shapeless(IL.MaCu_Bait_Bee.get(1), CR.DEF_NAC_NCC, new Object[] {ItemsGT.BUMBLEBEES});
-		
+
+		if (!DISABLE_BEES) {
+			RM.generify(ST.make(ItemsGT.BUMBLEBEES, 1, W), IL.MaCu_Bait_Bee.get(1));
+			CR.shapeless(IL.MaCu_Bait_Bee.get(1), CR.DEF_NAC_NCC, new Object[]{ItemsGT.BUMBLEBEES});
+		}
+
 		CR.shaped(ST.make(MD.MaCu, "crafting", 1,19), CR.DEF_NAC_REV_NCC, "h R", " R ", "R f", 'R', OP.stickLong.dat(MT.Ti));
 		
 		RM.Bath             .addRecipe1(T,  0,   16, ST.make(Items.string           , 1, W), MT.Au       .liquid(4*U, T), NF, ST.make(MD.MaCu, "crafting", 1, 0));

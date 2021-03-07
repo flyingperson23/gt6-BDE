@@ -32,6 +32,7 @@ import gregapi.util.ST;
 import gregapi.util.UT;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IBlockSource;
@@ -52,7 +53,6 @@ public class ItemBase extends Item implements IItemProjectile, IItemUpdatable, I
 	protected IIcon mIcon;
 	protected final String mModID;
 	protected final String mName, mTooltip;
-	
 	/**
 	 * @param aUnlocalized The unlocalised Name of this Item. DO NOT START YOUR UNLOCALISED NAME WITH "gt."!!!
 	 */
@@ -65,6 +65,9 @@ public class ItemBase extends Item implements IItemProjectile, IItemUpdatable, I
 		if (UT.Code.stringValid(aEnglishTooltip)) LH.add(mTooltip = mName + ".tooltip_main", aEnglishTooltip); else mTooltip = null;
 		ST.register(this, mName);
 		BlockDispenser.dispenseBehaviorRegistry.putObject(this, new GT_Item_Dispense());
+		if (CONSOLIDATE_CREATIVETABS) {
+			this.setCreativeTab(null);
+		}
 	}
 	
 	@Override
@@ -119,4 +122,14 @@ public class ItemBase extends Item implements IItemProjectile, IItemUpdatable, I
 	public boolean isItemStackUsable(ItemStack aStack) {return T;}
 	public ItemStack make(long aMetaData) {return ST.make(this, 1, aMetaData);}
 	public ItemStack make(long aAmount, long aMetaData) {return ST.make(this, aAmount, aMetaData);}
+
+	@Override
+	public Item setCreativeTab(CreativeTabs t) {
+		if (CONSOLIDATE_CREATIVETABS) {
+			super.setCreativeTab(TAB);
+			return this;
+		} else {
+			return super.setCreativeTab(t);
+		}
+	}
 }

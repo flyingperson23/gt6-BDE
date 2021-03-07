@@ -490,7 +490,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 				Iterator<EntityOcelot> tIterator = mOcelots.iterator();
 				while (tIterator.hasNext()) {
 					EntityOcelot tOcelot = tIterator.next();
-					if (tOcelot != null && tOcelot.tasks != null) tOcelot.tasks.addTask(3, new EntityAITempt(tOcelot, 0.6D, ItemsGT.CANS, T));
+					if (!DISABLE_MISC && tOcelot != null && tOcelot.tasks != null) tOcelot.tasks.addTask(3, new EntityAITempt(tOcelot, 0.6D, ItemsGT.CANS, T));
 					tIterator.remove();
 				}
 				mOcelots.clear();

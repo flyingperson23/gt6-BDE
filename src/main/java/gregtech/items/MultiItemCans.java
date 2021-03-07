@@ -40,7 +40,11 @@ import net.minecraft.world.World;
 public class MultiItemCans extends MultiItemRandom implements IItemRottable {
 	public MultiItemCans() {
 		super(MD.GT.mID, "gt.multiitem.cans");
-		setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Cans", this, (short)74));
+		if (CONSOLIDATE_CREATIVETABS) {
+			setCreativeTab(TAB);
+		} else {
+			setCreativeTab(new CreativeTab(getUnlocalizedName(), "GregTech: Cans", this, (short) 74));
+		}
 	}
 	
 	@Override
